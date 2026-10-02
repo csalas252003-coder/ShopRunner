@@ -1,23 +1,394 @@
-<section class="hero" id="home">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ShopRunner | From Store to Your Door.</title>
+<meta name="description" content="ShopRunner — Personal Shopping & Distribution Service in Navotas City, Metro Manila.">
+<style>
+:root{
+  --blue:#075EB8; --navy:#082B52; --orange:#FF9700; --white:#FFFFFF;
+  --light:#F5F9FD; --text:#102A43; --muted:#60758A; --line:#DDE9F3;
+  --shadow:0 14px 38px rgba(8,43,82,.09); --radius:16px;
+}
+*{box-sizing:border-box;scroll-behavior:smooth}
+body{margin:0;font-family:Inter,Poppins,Arial,sans-serif;color:var(--text);background:var(--light);line-height:1.65}
+a{text-decoration:none;color:inherit}
+img{max-width:100%;display:block}
+.container{width:min(1180px,92%);margin:auto}
+section{padding:92px 0}
+.navbar{position:absolute;top:0;left:0;width:100%;z-index:100;background:transparent;border-bottom:0;color:#fff}
+.nav-inner{height:88px;width:min(1380px,94%);margin:auto;display:flex;align-items:center;justify-content:space-between;gap:22px}
+.logo{display:flex;align-items:center;gap:9px;white-space:nowrap}.logo img{display:block;width:210px;height:auto;max-height:54px;object-fit:contain;object-position:center}.navlinks{color:#fff}.navlinks a{color:#fff}.navlinks a:hover{color:#d9efff}
+.logo-icon{width:38px;height:38px;border-radius:11px;background:var(--blue);color:white;display:grid;place-items:center;font-size:20px;box-shadow:0 8px 20px rgba(7,94,184,.25)}
+.navlinks{display:flex;gap:23px;align-items:center;font-size:13px;font-weight:800;color:#385169}
+.navlinks a{transition:.2s}.navlinks a:hover{color:var(--blue)}
+.nav-order{display:flex;align-items:center;gap:8px}.nav-order .btn-blue{background:#075eb8;box-shadow:0 8px 22px rgba(0,0,0,.16)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:10px;padding:13px 20px;font-weight:900;cursor:pointer;transition:.2s;font:inherit}
+.btn:hover{transform:translateY(-2px);box-shadow:0 9px 22px rgba(8,43,82,.14)}
+.btn-blue{background:var(--blue);color:#fff}.btn-orange{background:var(--orange);color:#10243A}.btn-dark{background:var(--navy);color:#fff}.btn-light{background:#fff;color:var(--navy);border:1px solid var(--line)}
+.cart{font-size:22px;color:#fff}
 
-  <video class="hero-video" autoplay muted loop playsinline>
-    <source src="shoprunner-bg.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
+.hero{height:100vh;min-height:650px;display:grid;place-items:center;text-align:center;color:#fff;position:relative;overflow:hidden;
+background-image:linear-gradient(180deg,rgba(5,35,70,.10) 0%,rgba(5,35,70,.04) 38%,rgba(3,20,42,.56) 100%),url('shoprunner-hero.jpg');
+background-position:center center;background-size:cover;background-repeat:no-repeat}
+.hero:after{display:none}
+.hero-content{position:relative;z-index:1;width:100%;height:100%;display:flex;align-items:flex-end;justify-content:center;padding:0 6% 72px;animation:rise .8s ease both}
+.badge{display:inline-flex;padding:8px 15px;border-radius:999px;background:#e8f3fd;color:var(--blue);font-size:11px;font-weight:900;letter-spacing:1.2px}
+.hero .badge{background:rgba(10,28,48,.58);color:#fff;border:1px solid rgba(255,255,255,.24);backdrop-filter:blur(8px)}
+.hero h1,.hero h2,.hero p{display:none}
+.hero-actions{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+.hero-actions:before{content:"NAVOTAS CITY  •  METRO MANILA";position:absolute;bottom:206px;left:50%;transform:translateX(-50%);padding:9px 17px;border-radius:999px;background:rgba(20,30,40,.58);border:1px solid rgba(255,255,255,.22);backdrop-filter:blur(8px);font-size:11px;font-weight:900;letter-spacing:1.4px;color:#fff;white-space:nowrap}
+.hero-stats{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:35px}
+.hero-stat{padding:10px 15px;border:1px solid rgba(255,255,255,.2);background:rgba(8,43,82,.48);border-radius:999px;font-size:12px;font-weight:800}
+.hero-overlay-content{display:flex;flex-direction:column;align-items:center;gap:14px}
+.hero-highlights{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;margin-top:18px}
+.hero-highlight{min-width:220px;padding:15px 24px;border:1px solid rgba(255,255,255,.16);background:rgba(25,28,31,.52);backdrop-filter:blur(7px);border-radius:9px;font-size:15px;font-weight:850;color:#fff}
+.hero-highlight span{margin-right:9px;color:#ffad24}
+.hero-nav-logo{width:194px;height:auto;display:block}
 
-  <div class="video-overlay"></div>
+.section-head{text-align:center;max-width:760px;margin:0 auto 48px}
+.section-head h2{font-size:clamp(32px,4vw,45px);line-height:1.08;margin:14px 0 12px;letter-spacing:-1px}
+.section-head p{color:var(--muted);margin:0}
+#profile{padding:0;background:#f8fbfe}
+#profile .container{width:100%;max-width:none;margin:0;display:grid;grid-template-columns:48% 52%;gap:0;align-items:stretch}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:58px;align-items:center}
+.profile-img{height:760px;min-height:760px;border-radius:0;background:url('about-us.jpg') center/cover no-repeat;box-shadow:none}
+.copy{padding:78px 7.5% 78px 8.5%;background:#f8fbfe}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;padding:8px 15px;border-radius:999px;background:#dceeff;color:var(--blue);font-size:12px;letter-spacing:1px;font-weight:900}
+.eyebrow:before{content:'▣';font-size:12px}
+.copy h2{font-size:clamp(36px,3.4vw,48px);line-height:1.03;letter-spacing:-1.5px;margin:26px 0 24px;color:#07192c;max-width:650px}
+.copy p{color:#36536d;font-size:16px;line-height:1.8;margin:0 0 20px;max-width:760px}
+.mission-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:34px}
+.mini-card{background:#f7fbff;border:1px solid #dbe8f2;border-radius:12px;padding:24px;box-shadow:none;min-height:255px}
+.mini-icon{width:51px;height:51px;border-radius:9px;background:#ffe9bd;color:#c76d00;display:grid;place-items:center;font-weight:900;font-size:22px}
+.mini-card h3{margin:18px 0 9px;font-size:18px;color:#081d32}.mini-card p{font-size:15px;line-height:1.65;margin:0;color:#46627a}
 
-  <div class="hero-content">
-    <p>PERSONAL SHOPPING & DISTRIBUTION SERVICE</p>
+.services{background:#edf7fc}
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;box-shadow:0 9px 28px rgba(8,43,82,.06);transition:.25s}
+.card:hover{transform:translateY(-5px);box-shadow:var(--shadow)}
+.service-img{height:195px;background-position:center;background-size:cover}
+.grocery{background-image:url('assets/groceries.jpg')}
+.household{background-image:url('assets/household-essentials.jpg')}
+.school{background-image:url('assets/school-supplies.jpg')}
+.personal{background-image:url('assets/personal-care.jpg')}
+.card-body{padding:22px}.small-icon{font-size:20px;color:var(--blue)}
+.card h3{margin:8px 0 6px;font-size:21px}.card p{font-size:13px;color:var(--muted);min-height:63px}
+.divider{height:1px;background:var(--line);margin:14px 0}.check-list{list-style:none;padding:0;margin:0}.check-list li{font-size:13px;margin:7px 0}.check-list li:before{content:"✓";font-weight:900;color:#0c9b83;margin-right:9px}
 
-    <h1>From Store <span>to Your Door.</span></h1>
+.suppliers{background:#fff}
+.supplier-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.supplier{min-height:135px;background:var(--light);border:1px solid var(--line);border-radius:var(--radius);display:grid;place-items:center;text-align:center;padding:20px;font-weight:900;color:var(--navy);transition:.2s}
+.supplier:hover{transform:translateY(-3px);border-color:#bcd8ee}
+.supplier-mark{width:48px;height:48px;border-radius:50%;background:#fff;display:grid;place-items:center;color:var(--blue);font-weight:950;font-size:18px;box-shadow:0 5px 15px rgba(8,43,82,.08);margin-bottom:9px}
+.supplier-note{text-align:center;color:var(--muted);font-size:13px;margin:25px auto 0;max-width:760px}
 
-    <p>
-      ShopRunner helps customers get their everyday products without personally going to the store.
-      We handle shopping, checking, packing, transportation, and delivery.
-    </p>
+.logistics{background:var(--light)}
+.process-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.process-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:23px;box-shadow:0 7px 24px rgba(8,43,82,.05);transition:.2s}
+.process-card:hover{transform:translateY(-3px)}
+.number{color:var(--blue);font-size:12px;font-weight:950;letter-spacing:1px}.process-card h3{margin:6px 0 5px}.process-card p{font-size:13px;color:var(--muted);margin:0}
 
-    <a href="#services" class="btn">Explore Our Services</a>
+.channel-wrap{margin-top:25px;background:var(--navy);color:#fff;border-radius:var(--radius);padding:30px;overflow:hidden}
+.channel-wrap h3{text-align:center;margin:0 0 25px;font-size:16px}
+.channel{display:flex;align-items:center;justify-content:center;gap:0;min-width:940px}
+.channel-item{text-align:center;min-width:92px;font-size:11px;font-weight:800}
+.channel-circle{width:42px;height:42px;border-radius:50%;border:1px solid #7591ad;display:grid;place-items:center;margin:0 auto 8px;background:rgba(255,255,255,.04)}
+.arrow{font-size:18px;color:var(--orange);margin:0 2px}
+
+.video-section{background:#fff}
+.video-box{min-height:410px;border-radius:var(--radius);background:
+linear-gradient(120deg,rgba(8,43,82,.84),rgba(7,94,184,.58)),
+url('https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1600&q=85') center/cover;
+display:grid;place-items:center;text-align:center;color:#fff;box-shadow:var(--shadow);position:relative;overflow:hidden}
+.play{width:82px;height:82px;border-radius:50%;background:var(--orange);color:var(--navy);display:grid;place-items:center;font-size:29px;margin:auto;box-shadow:0 12px 30px rgba(0,0,0,.2)}
+.video-box h3{font-size:29px;margin:15px 0 5px}.video-box p{margin:0;color:#e6f1fa;font-size:13px}
+.video-caption{position:absolute;bottom:20px;left:0;right:0;font-size:11px;color:#dce9f5}
+.six-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:0 30px;margin-top:38px}
+.six-step{position:relative;background:transparent;border:0;border-radius:0;padding:0 0 34px;text-align:left;font-size:16px;font-weight:400;color:var(--text)}
+.six-step:nth-child(n+4){padding-top:0}
+.six-step:before{content:"";display:block;height:1px;background:var(--line);margin-bottom:30px}
+.six-step:after{content:"";position:absolute;top:-10px;left:0;width:20px;height:20px;border-radius:50%;background:var(--orange);box-shadow:0 0 0 6px var(--white)}
+.six-step .step-top{display:flex;align-items:center;gap:15px;margin-bottom:16px}
+.six-step .step-icon{width:60px;height:60px;border-radius:10px;background:#dceefe;display:grid;place-items:center;color:var(--blue);flex:0 0 60px}
+.six-step .step-icon svg{width:25px;height:25px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.six-step .step-num{font-size:39px;line-height:1;color:#b7c4cf;font-weight:950;letter-spacing:-1px}
+.six-step .step-title{display:block;font-size:23px;line-height:1.25;font-weight:900;color:#0b1622;margin-bottom:9px}
+.six-step .step-desc{display:block;font-size:15px;line-height:1.55;color:#385169;font-weight:400}
+@media(max-width:900px){.six-steps{grid-template-columns:1fr 1fr;gap:0 24px}}
+@media(max-width:620px){.six-steps{grid-template-columns:1fr}.six-step{padding-bottom:30px}.six-step .step-title{font-size:21px}.six-step .step-desc{font-size:14px}}
+
+.pricing{background:#edf7fc}
+.price-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:17px}
+.price-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:25px;text-align:center;box-shadow:0 7px 22px rgba(8,43,82,.05)}
+.price-card h3{font-size:12px;letter-spacing:.8px;color:var(--muted);margin:0 0 12px}.price-value{font-size:30px;color:var(--blue);font-weight:950}
+.example{max-width:850px;margin:22px auto 0;background:var(--navy);color:#fff;border-radius:var(--radius);padding:28px}
+.example h3{text-align:center;margin:0 0 18px}.example-row{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #284d70;font-size:14px}.example-row:last-child{border:0}.total{font-size:25px;color:var(--orange);font-weight:950}
+.note{text-align:center;font-size:11px;color:#b9cadd;margin:15px 0 0}
+
+.address{background:#fff}.address-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:22px}
+.address-card{background:var(--light);border:1px solid var(--line);border-radius:var(--radius);padding:30px}
+.info-row{display:flex;gap:13px;margin:20px 0}.info-icon{width:38px;height:38px;flex:0 0 38px;border-radius:10px;background:#e6f2fd;color:var(--blue);display:grid;place-items:center}.info-row h4{margin:0 0 2px}.info-row p{margin:0;color:var(--muted);font-size:13px}
+.map{border-radius:var(--radius);overflow:hidden;min-height:390px;border:1px solid var(--line)}.map iframe{width:100%;height:100%;min-height:390px;border:0}
+
+.why{background:#eef8fc;padding:0;overflow:hidden}
+.why-layout{display:grid;grid-template-columns:48% 52%;min-height:760px}
+.why-photo{min-height:760px;background:#dcecf4;overflow:hidden}
+.why-photo img{width:100%;height:100%;display:block;object-fit:cover;object-position:center center}
+.why-content{padding:48px 5.5% 55px;display:flex;flex-direction:column;justify-content:center}
+.why-content .section-head{text-align:left;margin:0 0 32px;max-width:850px}
+.why-content .section-head h2{font-size:42px;line-height:1.12;margin:14px 0 0;letter-spacing:-1.2px}
+.why-content .badge{background:#d8ecff;color:#075eb8;border-radius:999px;padding:8px 16px;font-size:13px;letter-spacing:.4px}
+.why-content .section-head p{display:none}
+.why-features{display:flex;flex-direction:column;gap:18px}
+.why-feature{background:#fff;border:1px solid #dbe7ee;border-radius:10px;padding:23px 24px;display:flex;align-items:center;gap:20px;box-shadow:0 5px 15px rgba(8,43,82,.025)}
+.why-feature-icon{width:54px;height:54px;flex:0 0 54px;border-radius:8px;background:#d7f3ee;color:#007e80;display:grid;place-items:center;font-size:25px}
+.why-feature h3{margin:0 0 7px;font-size:20px;color:#0b1622}
+.why-feature p{margin:0;color:#385169;font-size:15px;line-height:1.5}
+@media(max-width:1000px){.why-layout{grid-template-columns:1fr}.why-photo{min-height:480px}.why-content{padding:50px 6%}.why-content .section-head h2{font-size:36px}}
+@media(max-width:620px){.why-photo{min-height:360px}.why-content{padding:38px 5%}.why-content .section-head h2{font-size:31px}.why-feature{padding:18px}.why-feature-icon{width:48px;height:48px;flex-basis:48px}.why-feature h3{font-size:18px}.why-feature p{font-size:14px}}
+
+.order{background:#edf7fc}.form-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:32px;box-shadow:var(--shadow);max-width:950px;margin:auto}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:17px}.field{display:flex;flex-direction:column;gap:7px}.field.full{grid-column:1/-1}.field label{font-size:12px;font-weight:900;color:#385169}.field input,.field select,.field textarea{border:1px solid var(--line);border-radius:10px;padding:13px 14px;background:#fff;font:inherit;color:var(--text);outline:none}.field input:focus,.field select:focus,.field textarea:focus{border-color:#7cb4e3;box-shadow:0 0 0 3px rgba(7,94,184,.08)}.field textarea{min-height:110px;resize:vertical}.form-note{font-size:11px;color:var(--muted);text-align:center;margin:15px 0 0}
+
+.contact-strip{background:var(--navy);color:#fff}.contact-grid{display:grid;grid-template-columns:1.1fr 1fr 1fr 1fr;gap:25px;align-items:start}.contact-brand{font-size:25px;font-weight:950}.contact-brand span{color:var(--orange)}.contact-item{font-size:13px;color:#d0ddeb}.contact-item b{display:block;color:#fff;margin-bottom:5px}.socials{display:flex;gap:8px;margin-top:15px}.social{width:34px;height:34px;border:1px solid #58728e;border-radius:50%;display:grid;place-items:center;font-size:12px}
+
+footer{background:#061f3b;color:#b9c9d8;padding:43px 0 20px}.footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:35px}.footer-brand{color:#fff;font-size:23px;font-weight:950}.footer-tag{color:var(--orange);font-size:12px;font-weight:900;margin-top:4px}.footer h4{color:#fff;font-size:11px;letter-spacing:1px}.footer-links{list-style:none;padding:0;margin:0}.footer-links li{margin:7px 0;font-size:12px}.copyright{border-top:1px solid #193b5b;margin-top:28px;padding-top:18px;font-size:11px;text-align:center}
+
+.toast{position:fixed;right:20px;bottom:20px;background:var(--navy);color:#fff;padding:15px 20px;border-radius:10px;box-shadow:var(--shadow);transform:translateY(140px);transition:.3s;z-index:200;font-size:13px}.toast.show{transform:translateY(0)}
+@keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+
+@media(max-width:1000px){
+ .navlinks{display:none}.cards,.price-cards,.feature-grid{grid-template-columns:1fr 1fr}
+ .two-col,.address-grid{grid-template-columns:1fr}.profile-img{height:430px}
+ .process-grid{grid-template-columns:1fr 1fr}.six-steps{grid-template-columns:repeat(3,1fr)}
+ .contact-grid{grid-template-columns:1fr 1fr}.channel-wrap{overflow-x:auto}
+}
+@media(max-width:900px){
+ #profile .container{grid-template-columns:1fr}
+ .profile-img{height:520px;min-height:520px}
+ .copy{padding:60px 6%}
+}
+@media(max-width:620px){
+ section{padding:65px 0}.hero-content{padding:0 5% 42px}.nav-order .btn{display:none}.hero-actions:before{bottom:174px;font-size:9px}.hero-highlight{min-width:145px;padding:12px 14px;font-size:12px}.hero-nav-logo{width:170px}
+ .cards,.price-cards,.feature-grid,.mission-grid,.process-grid,.form-grid,.six-steps,.supplier-grid,.contact-grid,.footer-grid{grid-template-columns:1fr}
+ .field.full{grid-column:auto}.profile-img{height:340px}.copy h2{font-size:34px}
+ .channel{justify-content:flex-start}.video-box{min-height:320px}.form-card{padding:20px}
+}
+
+.video-player-box{position:relative;display:block;overflow:hidden;padding:0;background:#082B52;}
+.process-video{display:block;width:100%;height:auto;max-height:620px;object-fit:contain;background:#082B52;}
+.video-player-box .video-caption{position:absolute;left:18px;right:18px;bottom:18px;width:auto;pointer-events:none;}
+@media(max-width:620px){.process-video{min-height:220px;object-fit:contain}.video-player-box .video-caption{font-size:10px;bottom:10px;left:10px;right:10px}}
+</style>
+</head>
+<body>
+
+<header class="navbar">
+<div class="nav-inner">
+<a class="logo" href="#home" aria-label="ShopRunner home"><img src="shoprunner-logo-white.png" alt="ShopRunner - From Store to Your Door."></a>
+<nav class="navlinks">
+<a href="#home">Home</a><a href="#profile">Profile</a><a href="#services">Services</a><a href="#logistics">Logistics</a><a href="#pricing">Price</a><a href="#address">Address</a><a href="#contact">Contact</a>
+</nav>
+<div class="nav-order"><a class="btn btn-blue" href="#order">Place an Order</a><span class="cart">🛒</span></div>
+</div>
+</header>
+
+<section id="home" class="hero">
+<div class="hero-content">
+  <div class="hero-overlay-content">
+    <div class="hero-actions">
+      <a class="btn btn-orange" href="#order">🛒&nbsp; Place an Order</a>
+      <a class="btn btn-dark" href="#logistics">↯&nbsp; How It Works</a>
+    </div>
+    <div class="hero-highlights">
+      <div class="hero-highlight"><span>◷</span>Save Time</div>
+      <div class="hero-highlight"><span>♢</span>Items Checked</div>
+      <div class="hero-highlight"><span>▣</span>Delivered to You</div>
+    </div>
   </div>
-
+</div>
 </section>
+
+<section id="profile">
+<div class="container">
+<div class="profile-img" aria-label="ShopRunner shopper in supermarket"></div>
+<div class="copy">
+<span class="eyebrow">ABOUT US</span><h2>One organized process for your everyday needs</h2>
+<p>ShopRunner is a personal shopping and distribution service designed for customers who need everyday products but may not have enough time to personally visit the store. Our service connects customers, stores, shoppers, and transportation in one organized process.</p>
+<p>From receiving the customer's order up to the final delivery, ShopRunner makes sure that products are properly handled at every stage.</p>
+<div class="mission-grid">
+<div class="mini-card"><div class="mini-icon">⚑</div><h3>Our Mission</h3><p>To provide a convenient, organized, and reliable shopping and distribution service that helps customers save time and effort.</p></div>
+<div class="mini-card"><div class="mini-icon">◎</div><h3>Our Vision</h3><p>To become a trusted personal shopping and distribution service known for convenience, proper order handling, and dependable customer service.</p></div>
+</div>
+</div>
+</div>
+</section>
+
+<section id="services" class="services">
+<div class="container">
+<div class="section-head"><span class="badge">SERVICES / PRODUCTS</span><h2>Services / Products Offered</h2><p>Everyday products sourced from your chosen store and delivered with care.</p></div>
+<div class="cards">
+<article class="card"><div class="service-img grocery"></div><div class="card-body"><div class="small-icon">🛒</div><h3>Groceries</h3><p>Everyday food and kitchen needs, sourced fresh from your chosen store.</p><div class="divider"></div><ul class="check-list"><li>Fruits and vegetables</li><li>Meat and other food items</li><li>Milk and beverages</li><li>Snacks</li><li>Basic household groceries</li></ul></div></article>
+<article class="card"><div class="service-img household"></div><div class="card-body"><div class="small-icon">⌂</div><h3>Household Essentials</h3><p>Keep the home running with cleaning, laundry, and daily necessities.</p><div class="divider"></div><ul class="check-list"><li>Cleaning products</li><li>Laundry supplies</li><li>Personal care products</li><li>Basic home necessities</li></ul></div></article>
+<article class="card"><div class="service-img school"></div><div class="card-body"><div class="small-icon">✎</div><h3>School Supplies</h3><p>Back-to-school basics for students, parents, and teachers.</p><div class="divider"></div><ul class="check-list"><li>Notebooks</li><li>Pens and pencils</li><li>Paper</li><li>Folders</li><li>Other basic school materials</li></ul></div></article>
+<article class="card"><div class="service-img personal"></div><div class="card-body"><div class="small-icon">♡</div><h3>Personal-Care Items</h3><p>Hygiene and everyday personal necessities, picked just for you.</p><div class="divider"></div><ul class="check-list"><li>Hygiene products</li><li>Toiletries</li><li>Everyday personal necessities</li></ul></div></article>
+</div>
+</div>
+</section>
+
+<section class="suppliers">
+<div class="container">
+<div class="section-head"><span class="badge">SUPPLIERS</span><h2>Selected Stores & Suppliers</h2><p>ShopRunner works with selected stores and local suppliers depending on product availability and customer requests.</p></div>
+<div class="supplier-grid">
+<div class="supplier"><div><div class="supplier-mark">SM</div>SM Supermarket</div></div>
+<div class="supplier"><div><div class="supplier-mark">R</div>Robinsons Supermarket</div></div>
+<div class="supplier"><div><div class="supplier-mark">P</div>Puregold</div></div>
+<div class="supplier"><div><div class="supplier-mark">+</div>Other Local Suppliers</div></div>
+</div>
+<p class="supplier-note">ShopRunner sources products from selected supermarkets and local suppliers depending on product availability and customer requests.</p>
+</div>
+</section>
+
+<section id="logistics" class="logistics">
+<div class="container">
+<div class="section-head"><span class="badge">LOGISTICS</span><h2>How ShopRunner Works</h2><p>From customer order to final delivery, every step is organized and checked.</p></div>
+<div class="process-grid">
+<div class="process-card"><span class="number">01 — CUSTOMER</span><h3>Customer</h3><p>The customer chooses the products they need and provides the necessary order and delivery details.</p></div>
+<div class="process-card"><span class="number">02 — ONLINE ORDER</span><h3>Online Order</h3><p>The customer submits their order through the ShopRunner platform.</p></div>
+<div class="process-card"><span class="number">03 — ORDER PROCESSING</span><h3>Order Processing</h3><p>ShopRunner reviews the requested products, quantities, store location, and delivery information.</p></div>
+<div class="process-card"><span class="number">04 — STORE / SUPPLIER</span><h3>Store / Supplier</h3><p>The assigned ShopRunner shopper goes to the selected store or supplier.</p></div>
+<div class="process-card"><span class="number">05 — PRODUCT SOURCING</span><h3>Product Sourcing</h3><p>The shopper purchases the requested products.</p></div>
+<div class="process-card"><span class="number">06 — ITEM CHECKING</span><h3>Item Checking</h3><p>Each item is checked to make sure the product, quantity, and condition are correct.</p></div>
+<div class="process-card"><span class="number">07 — PACKING & PREPARATION</span><h3>Packing & Preparation</h3><p>The products are organized and packed properly before transportation.</p></div>
+<div class="process-card"><span class="number">08 — TRANSPORTATION</span><h3>Transportation</h3><p>The prepared order is transported from the store to the customer's location.</p></div>
+<div class="process-card"><span class="number">09 — FINAL DELIVERY</span><h3>Final Delivery</h3><p>The customer receives the order together with the receipt and order details.</p></div>
+</div>
+<div class="channel-wrap">
+<h3>DISTRIBUTION CHANNEL</h3>
+<div style="overflow-x:auto"><div class="channel">
+<div class="channel-item"><div class="channel-circle">1</div>Customer</div><div class="arrow">→</div>
+<div class="channel-item"><div class="channel-circle">2</div>Online Order</div><div class="arrow">→</div>
+<div class="channel-item"><div class="channel-circle">3</div>Order Processing</div><div class="arrow">→</div>
+<div class="channel-item"><div class="channel-circle">4</div>Store / Supplier</div><div class="arrow">→</div>
+<div class="channel-item"><div class="channel-circle">5</div>Product Sourcing</div><div class="arrow">→</div>
+<div class="channel-item"><div class="channel-circle">6</div>Item Checking</div><div class="arrow">→</div>
+<div class="channel-item"><div class="channel-circle">7</div>Packing & Preparation</div><div class="arrow">→</div>
+<div class="channel-item"><div class="channel-circle">8</div>Transportation</div><div class="arrow">→</div>
+<div class="channel-item"><div class="channel-circle">9</div>Customer</div>
+</div></div>
+</div>
+</div>
+</section>
+
+<section id="process" class="video-section">
+<div class="container">
+<div class="section-head"><span class="badge">ORDER PROCESS</span><h2>From Order to Your Door</h2><p>A simple process that keeps your order organized from request to delivery.</p></div>
+<div class="video-box video-player-box">
+<video class="process-video" controls playsinline preload="metadata">
+<source src="shoprunner-process.mp4" type="video/mp4">
+Your browser does not support the video tag.
+</video>
+<div class="video-caption">PERSONAL SHOPPING · PRODUCT CHECKING · PACKING · TRANSPORTATION · DELIVERY</div>
+</div>
+<div class="six-steps">
+<div class="six-step"><div class="step-top"><span class="step-icon"><svg viewBox="0 0 24 24"><path d="M6 3h9l3 3v15H6z"/><path d="M9 8h6M9 12h6M9 16h4"/></svg></span><span class="step-num">01</span></div><span class="step-title">Place Your Order</span><span class="step-desc">Send the products you want to purchase.</span></div>
+<div class="six-step"><div class="step-top"><span class="step-icon"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="m8 12 3 3 5-6"/></svg></span><span class="step-num">02</span></div><span class="step-title">Order Confirmation</span><span class="step-desc">ShopRunner reviews your order and confirms the details.</span></div>
+<div class="six-step"><div class="step-top"><span class="step-icon"><svg viewBox="0 0 24 24"><circle cx="9" cy="20" r="1"/><circle cx="18" cy="20" r="1"/><path d="M3 4h2l2.2 11h10.9l2-8H6"/></svg></span><span class="step-num">03</span></div><span class="step-title">Product Sourcing</span><span class="step-desc">Our assigned shopper goes to the selected store or supplier.</span></div>
+<div class="six-step"><div class="step-top"><span class="step-icon"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="8" height="8" rx="1"/><rect x="13" y="8" width="8" height="8" rx="1"/><path d="m7 12 2 2 5-6"/></svg></span><span class="step-num">04</span></div><span class="step-title">Item Checking</span><span class="step-desc">We verify the products, quantity, and condition.</span></div>
+<div class="six-step"><div class="step-top"><span class="step-icon"><svg viewBox="0 0 24 24"><rect x="4" y="7" width="16" height="13" rx="2"/><path d="M8 7V5h8v2M4 11h16"/></svg></span><span class="step-num">05</span></div><span class="step-title">Packing</span><span class="step-desc">Your order is organized and prepared for transportation.</span></div>
+<div class="six-step"><div class="step-top"><span class="step-icon"><svg viewBox="0 0 24 24"><path d="M3 7h12v10H3zM15 10h4l2 3v4h-6z"/><circle cx="7" cy="19" r="2"/><circle cx="18" cy="19" r="2"/></svg></span><span class="step-num">06</span></div><span class="step-title">Delivery</span><span class="step-desc">Your order is transported and delivered to your preferred location.</span></div>
+</div>
+</div>
+</section>
+
+<section id="pricing" class="pricing">
+<div class="container">
+<div class="section-head"><span class="badge">SERVICE RATES</span><h2>Simple & Transparent Pricing</h2><p>Clear sample rates for the personal shopping and distribution service.</p></div>
+<div class="price-cards">
+<div class="price-card"><h3>PERSONAL SHOPPING FEE</h3><div class="price-value">₱50</div></div>
+<div class="price-card"><h3>LOCAL DELIVERY FEE</h3><div class="price-value">₱60+</div></div>
+<div class="price-card"><h3>ADDITIONAL SHOPPING REQUEST</h3><div class="price-value">₱20</div></div>
+<div class="price-card"><h3>SPECIAL / EXTRA HANDLING</h3><div class="price-value" style="font-size:22px">Depends on request</div></div>
+</div>
+<div class="example"><h3>Example Pricing</h3><div class="example-row"><span>Products Purchased</span><strong>₱500</strong></div><div class="example-row"><span>Shopping Fee</span><strong>₱50</strong></div><div class="example-row"><span>Delivery Fee</span><strong>₱60</strong></div><div class="example-row"><span>Estimated Total</span><strong class="total">₱610</strong></div><p class="note">Prices are sample rates and may vary depending on distance, order size, store location, and special requests.</p></div>
+</div>
+</section>
+
+<section id="address" class="address">
+<div class="container">
+<div class="section-head"><span class="badge">LOCATION</span><h2>Address & Service Area</h2><p>Serving customers in Navotas City and selected nearby areas, depending on delivery availability.</p></div>
+<div class="address-grid">
+<div class="address-card">
+<div class="info-row"><div class="info-icon">📍</div><div><h4>Main Location</h4><p>Navotas City, Metro Manila, Philippines</p></div></div>
+<div class="info-row"><div class="info-icon">⌖</div><div><h4>Service Area</h4><p>Navotas and selected nearby areas, depending on delivery availability.</p></div></div>
+<div class="info-row"><div class="info-icon">✓</div><div><h4>Availability</h4><p>Delivery coverage depends on the customer's location and request.</p></div></div>
+</div>
+<div class="map"><iframe src="https://www.openstreetmap.org/export/embed.html?bbox=120.91%2C14.63%2C120.98%2C14.70&layer=mapnik" title="Map of Navotas City"></iframe></div>
+</div>
+</div>
+</section>
+
+<section class="why">
+<div class="why-layout">
+<div class="why-photo"><img src="why-shoprunner.jpg" alt="ShopRunner shopper delivering an order"></div>
+<div class="why-content">
+<div class="section-head"><span class="badge">☆ &nbsp; WHY SHOPRUNNER?</span><h2>Convenience and care you can count on</h2></div>
+<div class="why-features">
+<div class="why-feature"><div class="why-feature-icon">▣</div><div><h3>Convenience</h3><p>You don't need to personally visit the store.</p></div></div>
+<div class="why-feature"><div class="why-feature-icon">◷</div><div><h3>Time-Saving</h3><p>Let our shopper handle the shopping while you focus on other important tasks.</p></div></div>
+<div class="why-feature"><div class="why-feature-icon">♢</div><div><h3>Proper Item Checking</h3><p>We check your order before it leaves the store.</p></div></div>
+<div class="why-feature"><div class="why-feature-icon">⌁</div><div><h3>Organized Logistics</h3><p>Every order follows a clear process from store to customer.</p></div></div>
+<div class="why-feature"><div class="why-feature-icon">♡</div><div><h3>Customer-Focused Service</h3><p>We aim to deliver the right products to the right customer at the right time.</p></div></div>
+</div>
+</div>
+</div>
+</section>
+
+<section id="order" class="order">
+<div class="container">
+<div class="section-head"><span class="badge">ORDER NOW</span><h2>Place an Order</h2><p>Tell us what you need and provide complete details so we can process your request properly.</p></div>
+<div class="form-card">
+<form id="orderForm">
+<div class="form-grid">
+<div class="field"><label>Full Name</label><input required placeholder="Juan Dela Cruz"></div>
+<div class="field"><label>Contact Number</label><input required placeholder="09XX-XXX-XXXX"></div>
+<div class="field full"><label>Delivery Address</label><input required placeholder="House/Building, Street, Barangay, Navotas City"></div>
+<div class="field"><label>Preferred Store</label><select required><option value="">Select a store</option><option>SM Supermarket</option><option>Robinsons Supermarket</option><option>Puregold</option><option>Other Local Supplier</option></select></div>
+<div class="field"><label>Product / Item</label><input required placeholder="e.g. Milk, notebook, shampoo"></div>
+<div class="field"><label>Quantity</label><input required type="number" min="1" placeholder="1"></div>
+<div class="field full"><label>Special Instructions</label><textarea placeholder="Preferred brand, substitutions, handling requests, etc."></textarea></div>
+<div class="field full"><button class="btn btn-orange" type="submit">🛒 Submit Order</button></div>
+</div>
+<p class="form-note">Please provide complete and accurate information so we can process your order properly.</p>
+</form>
+</div>
+</div>
+</section>
+
+<section id="contact" class="contact-strip">
+<div class="container contact-grid">
+<div><div class="contact-brand">🛒 Shop<span>Runner</span></div><p class="contact-item">From Store to Your Door.</p><div class="socials"><span class="social">f</span><span class="social">ig</span><span class="social">✉</span></div></div>
+<div class="contact-item"><b>Phone</b>09XX-XXX-XXXX</div>
+<div class="contact-item"><b>Email</b>shoprunner@email.com</div>
+<div class="contact-item"><b>Location</b>Navotas City, Metro Manila, Philippines</div>
+</div>
+</section>
+
+<footer>
+<div class="container footer-grid">
+<div><div class="footer-brand">🛒 ShopRunner</div><div class="footer-tag">From Store to Your Door.</div></div>
+<div><h4>QUICK LINKS</h4><ul class="footer-links"><li><a href="#home">Home</a></li><li><a href="#profile">Profile</a></li><li><a href="#services">Services</a></li><li><a href="#logistics">Logistics</a></li><li><a href="#pricing">Price</a></li><li><a href="#address">Address</a></li><li><a href="#contact">Contact</a></li></ul></div>
+<div><h4>GET IN TOUCH</h4><ul class="footer-links"><li>09XX-XXX-XXXX</li><li>shoprunner@email.com</li><li>Navotas City, Metro Manila</li></ul></div>
+</div>
+<div class="container copyright">© 2026 ShopRunner. All Rights Reserved.</div>
+</footer>
+
+<div class="toast" id="toast">Order request received! This demo form does not send data to a real backend.</div>
+<script>
+const form=document.getElementById('orderForm'),toast=document.getElementById('toast');
+form.addEventListener('submit',e=>{e.preventDefault();toast.classList.add('show');form.reset();setTimeout(()=>toast.classList.remove('show'),4000)});
+</script>
+</body>
+</html>
