@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flood Monitor System</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-900 text-white font-sans p-4 md:p-8">
+
+    <div class="max-w-md mx-auto bg-slate-800 rounded-2xl shadow-2xl overflow-hidden border border-slate-700">
+        <div class="p-6">
+            <div class="flex justify-between items-center mb-4">
+                <h1 class="text-xl font-bold tracking-tight text-slate-200">FLOOD MONITOR</h1>
+                <span id="rgb-status-badge" class="px-4 py-1 rounded-full text-xs font-black shadow-inner transition-colors duration-500">
+                    LOADING...
+                </span>
+            </div>
+            
+            <p class="text-slate-400 text-sm mb-6 font-mono">ID: SENSOR_01</p>
+
+            <div class="text-center mb-10">
+                <p class="text-slate-500 uppercase text-xs tracking-[0.2em] mb-2">Water Fill Level</p>
+                <div class="relative">
+                    <h2 id="fill-text" class="text-7xl font-black text-white transition-all">--%</h2>
+                    <div class="w-full bg-slate-700 h-3 mt-6 rounded-full overflow-hidden">
+                        <div id="fill-bar" class="bg-blue-500 h-full transition-all duration-1000 ease-out" style="width: 0%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="alert-box" class="mb-6 p-3 rounded-lg bg-slate-700/50 border border-slate-600 text-center hidden">
+                <p class="text-xs text-slate-400 uppercase mb-1">System Message</p>
+                <p id="alert-text" class="text-sm font-semibold text-orange-400"></p>
+            </div>
+
+            <div class="grid grid-cols-2 gap-4 border-t border-slate-700 pt-6">
+                <div class="text-center border-r border-slate-700">
+                    <p class="text-slate-500 text-[10px] uppercase mb-1">Raw Sensor Value</p>
+                    <p id="raw-val" class="text-xl font-bold font-mono">----</p>
+                </div>
+                <div class="text-center">
+                    <p class="text-slate-500 text-[10px] uppercase mb-1">Pump Status</p>
+                    <p id="pump-status" class="text-xl font-bold">WAITING</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-slate-900/50 p-4 flex justify-between items-center text-[10px] text-slate-500 font-mono border-t border-slate-700/50">
+            <span>🛡️ HW STATUS: ACTIVE</span>
+            <span id="last-update">--:--:--</span>
+        </div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+
+        // IMPORTANT: Replace these with your actual keys from Firebase Project Settings
+        const firebaseConfig = {
+            apiKey: "YOUR_API_KEY", 
+            authDomain: "floodmonitorsystem-2650d.firebaseapp.com",
+            databaseURL: "https://floodmonitorsystem-2650d-default-rtdb.firebaseio.com/",
+            projectId: "floodmonitorsystem-2650d",
+            storageBucket: "floodmonitorsystem-2650d.appspot.com",
+            messagingSenderId: "YOUR_SENDER_ID",
+            appId: "YOUR_APP_ID"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+        const sensorRef = ref(db, 'sensors/sensor_01');
+
+        onValue(sensorRef, (snapshot) => {
+            const data = snapshot.val();
+            if (data) {
+                // 1. Update Water Percentage & Progress Bar
+                const percent = data.water_percentage; // Expecting "90%"
+                document.getElementById("fill-text").innerText = percent;
+                document.getElementById("fill-bar").style.width = percent;
+
+                // 2. Update Raw Sensor Data
+                document.getElementById("raw-val").innerText = data.water_level_raw;
+
+                // 3. Update Pump (Relay) Status
+                const pump = document.getElementById("pump-status");
+                pump.innerText = data.relay_active ? "RUNNING" : "STANDBY";
+                pump.style.color = data.relay_active ? "#f87171" : "#fb923c";
+
+                // 4. Update Badge Color based on RGB values
+                const badge = document.getElementById("rgb-status-badge");
+                badge.innerText = data.status.toUpperCase();
+                badge.style.backgroundColor = `rgb(${data.rgb.r}, ${data.rgb.g}, ${data.rgb.b})`;
+                // Contrast logic: text black for light backgrounds, white for dark
+                badge.style.color = (data.rgb.r + data.rgb.g + data.rgb.b) > 400 ? 'black' : 'white';
+
+                // 5. Alert Message Display
+                const alertBox = document.getElementById("alert-box");
+                if (data.alert_message && data.status !== "normal") {
+                    alertBox.classList.remove("hidden");
+                    document.getElementById("alert-text").innerText = data.alert_message;
+                } else {
+                    alertBox.classList.add("hidden");
+                }
+
+                // 6. Update Timestamp
+                document.getElementById("last-update").innerText = data.last_updated;
+            }
+        });
+    </script>
+</body>
+</html>
