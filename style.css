@@ -35,3 +35,47 @@ h1{font-size:64px;line-height:1.04;margin:0 0 22px;color:var(--navy)}h1 span{col
 footer{text-align:center;padding:30px;background:#062e5e;color:#d8e8f8}.footer-brand{font-size:20px}.copyright{font-size:12px;opacity:.75}
 @media(max-width:900px){nav{gap:14px}.cards{grid-template-columns:repeat(2,1fr)}.hero{padding:70px 7%}.section{padding:75px 7%}.contact-section{grid-template-columns:1fr}.timeline{grid-template-columns:1fr 1fr}}
 @media(max-width:700px){.navbar{padding:0 5%}.menu-btn{display:block}nav{display:none;position:absolute;top:76px;left:0;right:0;background:white;padding:20px;flex-direction:column;border-bottom:1px solid var(--border)}nav.open{display:flex}.hero{min-height:auto;flex-direction:column;text-align:center;padding:65px 6%}.hero-card{width:100%;max-width:340px}h1{font-size:48px}.hero-buttons{justify-content:center;flex-wrap:wrap}.two-col,.cards,.timeline,.price-grid{grid-template-columns:1fr}.section-heading h2{font-size:32px}.contact-section h2{font-size:34px}.address-card{flex-direction:column}}
+/* ShopRunner Background Video */
+.hero {
+  position: relative;
+  min-height: 600px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+.hero-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.video-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 700px;
+  color: white;
+}
+
+.hero-content h1 {
+  font-size: 55px;
+  margin: 15px 0;
+}
+
+.hero-content h1 span {
+  color: #45b8ff;
+}
+
+.hero-content p {
+  font-size: 18px;
+}
