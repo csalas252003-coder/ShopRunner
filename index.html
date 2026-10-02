@@ -1,112 +1,319 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flood Monitor System</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ShopRunner | From Store to Your Door</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-slate-900 text-white font-sans p-4 md:p-8">
+<body>
+  <header class="navbar">
+    <a href="#home" class="brand">
+      <span class="brand-icon">🛒</span>
+      <span>Shop<span>Runner</span></span>
+    </a>
+    <button class="menu-btn" onclick="toggleMenu()" aria-label="Open menu">☰</button>
+    <nav id="navMenu">
+      <a href="#home">Home</a>
+      <a href="#profile">Profile</a>
+      <a href="#services">Services</a>
+      <a href="#logistics">Logistics</a>
+      <a href="#price">Price</a>
+      <a href="#address">Address</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
 
-    <div class="max-w-md mx-auto bg-slate-800 rounded-2xl shadow-2xl overflow-hidden border border-slate-700">
-        <div class="p-6">
-            <div class="flex justify-between items-center mb-4">
-                <h1 class="text-xl font-bold tracking-tight text-slate-200">FLOOD MONITOR</h1>
-                <span id="rgb-status-badge" class="px-4 py-1 rounded-full text-xs font-black shadow-inner transition-colors duration-500">
-                    LOADING...
-                </span>
-            </div>
-            
-            <p class="text-slate-400 text-sm mb-6 font-mono">ID: SENSOR_01</p>
+  <main>
+    <section id="home" class="hero">
+      <div class="hero-content">
+        <p class="eyebrow">PERSONAL SHOPPING & DISTRIBUTION SERVICE</p>
+        <h1>From Store<br><span>to Your Door.</span></h1>
+        <p class="hero-text">
+          ShopRunner helps you get everyday products without personally going to the store.
+          We handle shopping, item checking, packing, transportation, and final delivery.
+        </p>
+        <div class="hero-buttons">
+          <a class="btn primary" href="#contact">Place an Order</a>
+          <a class="btn secondary" href="#logistics">See Our Process</a>
+        </div>
+      </div>
 
-            <div class="text-center mb-10">
-                <p class="text-slate-500 uppercase text-xs tracking-[0.2em] mb-2">Water Fill Level</p>
-                <div class="relative">
-                    <h2 id="fill-text" class="text-7xl font-black text-white transition-all">--%</h2>
-                    <div class="w-full bg-slate-700 h-3 mt-6 rounded-full overflow-hidden">
-                        <div id="fill-bar" class="bg-blue-500 h-full transition-all duration-1000 ease-out" style="width: 0%"></div>
-                    </div>
-                </div>
-            </div>
+      <div class="hero-card">
+        <div class="cart-circle">🛒</div>
+        <h3>Your shopping needs, handled.</h3>
+        <p>Convenient • Organized • Customer-focused</p>
+      </div>
+    </section>
 
-            <div id="alert-box" class="mb-6 p-3 rounded-lg bg-slate-700/50 border border-slate-600 text-center hidden">
-                <p class="text-xs text-slate-400 uppercase mb-1">System Message</p>
-                <p id="alert-text" class="text-sm font-semibold text-orange-400"></p>
-            </div>
+    <section id="profile" class="section">
+      <div class="section-heading">
+        <p class="eyebrow">PROFILE</p>
+        <h2>About ShopRunner</h2>
+        <p>
+          We make shopping easier by connecting customers with stores through
+          an organized personal shopping and distribution process.
+        </p>
+      </div>
 
-            <div class="grid grid-cols-2 gap-4 border-t border-slate-700 pt-6">
-                <div class="text-center border-r border-slate-700">
-                    <p class="text-slate-500 text-[10px] uppercase mb-1">Raw Sensor Value</p>
-                    <p id="raw-val" class="text-xl font-bold font-mono">----</p>
-                </div>
-                <div class="text-center">
-                    <p class="text-slate-500 text-[10px] uppercase mb-1">Pump Status</p>
-                    <p id="pump-status" class="text-xl font-bold">WAITING</p>
-                </div>
-            </div>
+      <div class="two-col">
+        <div class="info-card">
+          <h3>Our Mission</h3>
+          <p>
+            To provide a convenient, organized, and reliable personal shopping
+            and distribution service that helps customers save time and effort.
+          </p>
         </div>
 
-        <div class="bg-slate-900/50 p-4 flex justify-between items-center text-[10px] text-slate-500 font-mono border-t border-slate-700/50">
-            <span>🛡️ HW STATUS: ACTIVE</span>
-            <span id="last-update">--:--:--</span>
+        <div class="info-card">
+          <h3>Our Vision</h3>
+          <p>
+            To become a trusted shopping and distribution service known for
+            convenience, proper order handling, and dependable customer service.
+          </p>
         </div>
-    </div>
+      </div>
+    </section>
 
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-        import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+    <section id="services" class="section soft">
+      <div class="section-heading">
+        <p class="eyebrow">SERVICES / PRODUCTS</p>
+        <h2>What We Can Shop For You</h2>
+        <p>
+          ShopRunner sources requested everyday products from selected stores and suppliers.
+        </p>
+      </div>
 
-        // IMPORTANT: Replace these with your actual keys from Firebase Project Settings
-        const firebaseConfig = {
-            apiKey: "YOUR_API_KEY", 
-            authDomain: "floodmonitorsystem-2650d.firebaseapp.com",
-            databaseURL: "https://floodmonitorsystem-2650d-default-rtdb.firebaseio.com/",
-            projectId: "floodmonitorsystem-2650d",
-            storageBucket: "floodmonitorsystem-2650d.appspot.com",
-            messagingSenderId: "YOUR_SENDER_ID",
-            appId: "YOUR_APP_ID"
-        };
+      <div class="cards">
+        <article class="service-card">
+          <div class="service-icon">🥦</div>
+          <h3>Groceries</h3>
+          <p>Fruits, vegetables, beverages, snacks, and basic grocery needs.</p>
+        </article>
 
-        const app = initializeApp(firebaseConfig);
-        const db = getDatabase(app);
-        const sensorRef = ref(db, 'sensors/sensor_01');
+        <article class="service-card">
+          <div class="service-icon">🧹</div>
+          <h3>Household Essentials</h3>
+          <p>Cleaning supplies, laundry products, and other home necessities.</p>
+        </article>
 
-        onValue(sensorRef, (snapshot) => {
-            const data = snapshot.val();
-            if (data) {
-                // 1. Update Water Percentage & Progress Bar
-                const percent = data.water_percentage; // Expecting "90%"
-                document.getElementById("fill-text").innerText = percent;
-                document.getElementById("fill-bar").style.width = percent;
+        <article class="service-card">
+          <div class="service-icon">📚</div>
+          <h3>School Supplies</h3>
+          <p>Notebooks, pens, paper, folders, and other basic school materials.</p>
+        </article>
 
-                // 2. Update Raw Sensor Data
-                document.getElementById("raw-val").innerText = data.water_level_raw;
+        <article class="service-card">
+          <div class="service-icon">🧴</div>
+          <h3>Personal-Care Items</h3>
+          <p>Toiletries, hygiene products, and everyday personal necessities.</p>
+        </article>
+      </div>
 
-                // 3. Update Pump (Relay) Status
-                const pump = document.getElementById("pump-status");
-                pump.innerText = data.relay_active ? "RUNNING" : "STANDBY";
-                pump.style.color = data.relay_active ? "#f87171" : "#fb923c";
+      <div class="stores">
+        <h3>Selected Stores / Suppliers</h3>
+        <div class="store-list">
+          <span>SM Supermarket</span>
+          <span>Robinsons Supermarket</span>
+          <span>Puregold</span>
+          <span>Other approved suppliers</span>
+        </div>
+      </div>
+    </section>
 
-                // 4. Update Badge Color based on RGB values
-                const badge = document.getElementById("rgb-status-badge");
-                badge.innerText = data.status.toUpperCase();
-                badge.style.backgroundColor = `rgb(${data.rgb.r}, ${data.rgb.g}, ${data.rgb.b})`;
-                // Contrast logic: text black for light backgrounds, white for dark
-                badge.style.color = (data.rgb.r + data.rgb.g + data.rgb.b) > 400 ? 'black' : 'white';
+    <section id="logistics" class="section">
+      <div class="section-heading">
+        <p class="eyebrow">LOGISTICS</p>
+        <h2>Our Distribution Channel</h2>
+        <p>
+          Every order follows a clear process from the customer's request to final delivery.
+        </p>
+      </div>
 
-                // 5. Alert Message Display
-                const alertBox = document.getElementById("alert-box");
-                if (data.alert_message && data.status !== "normal") {
-                    alertBox.classList.remove("hidden");
-                    document.getElementById("alert-text").innerText = data.alert_message;
-                } else {
-                    alertBox.classList.add("hidden");
-                }
+      <div class="timeline">
+        <div class="step">
+          <b>01</b>
+          <h3>Customer</h3>
+          <p>Customer chooses the products and provides order and delivery details.</p>
+        </div>
 
-                // 6. Update Timestamp
-                document.getElementById("last-update").innerText = data.last_updated;
-            }
-        });
-    </script>
+        <div class="step">
+          <b>02</b>
+          <h3>Online Order</h3>
+          <p>Order is submitted through the ShopRunner platform.</p>
+        </div>
+
+        <div class="step">
+          <b>03</b>
+          <h3>Order Processing</h3>
+          <p>We review items, quantities, store location, and delivery details.</p>
+        </div>
+
+        <div class="step">
+          <b>04</b>
+          <h3>Store / Supplier</h3>
+          <p>Our assigned shopper goes to the selected store or supplier.</p>
+        </div>
+
+        <div class="step">
+          <b>05</b>
+          <h3>Product Sourcing</h3>
+          <p>Requested products are purchased from the selected store.</p>
+        </div>
+
+        <div class="step">
+          <b>06</b>
+          <h3>Item Checking</h3>
+          <p>We verify the product, quantity, and condition.</p>
+        </div>
+
+        <div class="step">
+          <b>07</b>
+          <h3>Packing & Preparation</h3>
+          <p>Products are organized and packed for transportation.</p>
+        </div>
+
+        <div class="step">
+          <b>08</b>
+          <h3>Transportation</h3>
+          <p>The prepared order is transported to the customer's location.</p>
+        </div>
+
+        <div class="step">
+          <b>09</b>
+          <h3>Final Delivery</h3>
+          <p>The customer receives the order and receipt details.</p>
+        </div>
+      </div>
+
+      <div class="process-image">
+        <img src="shoprunner-process.jpg" alt="ShopRunner distribution process">
+      </div>
+    </section>
+
+    <section id="price" class="section soft">
+      <div class="section-heading">
+        <p class="eyebrow">PRICE</p>
+        <h2>Simple & Transparent Rates</h2>
+        <p>
+          Sample rates for the business proposal. Actual fees may vary by distance,
+          order size, and special requests.
+        </p>
+      </div>
+
+      <div class="price-grid">
+        <div class="price-card">
+          <h3>Personal Shopping</h3>
+          <strong>₱50</strong>
+          <p>Sample shopping service fee</p>
+        </div>
+
+        <div class="price-card featured">
+          <h3>Local Delivery</h3>
+          <strong>₱60+</strong>
+          <p>Starting sample delivery fee</p>
+        </div>
+
+        <div class="price-card">
+          <h3>Extra Request</h3>
+          <strong>₱20</strong>
+          <p>Sample additional shopping request</p>
+        </div>
+      </div>
+
+      <div class="price-example">
+        <h3>Sample Order Computation</h3>
+
+        <div>
+          <span>Products Purchased</span>
+          <b>₱500</b>
+        </div>
+
+        <div>
+          <span>Shopping Fee</span>
+          <b>₱50</b>
+        </div>
+
+        <div>
+          <span>Delivery Fee</span>
+          <b>₱60</b>
+        </div>
+
+        <div class="total">
+          <span>Estimated Total</span>
+          <b>₱610</b>
+        </div>
+      </div>
+    </section>
+
+    <section id="address" class="section">
+      <div class="section-heading">
+        <p class="eyebrow">ADDRESS</p>
+        <h2>Service Area</h2>
+      </div>
+
+      <div class="address-card">
+        <div class="address-icon">📍</div>
+
+        <div>
+          <h3>ShopRunner</h3>
+          <p>
+            <b>Main Service Area:</b>
+            Navotas City, Metro Manila, Philippines
+          </p>
+
+          <p>
+            Navotas and selected nearby areas, depending on delivery availability.
+          </p>
+
+          <small>
+            Delivery availability and fees may vary depending on the customer's location.
+          </small>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section contact-section">
+      <div class="contact-copy">
+        <p class="eyebrow">CONTACT US</p>
+
+        <h2>Need something from the store?</h2>
+
+        <p>
+          Let ShopRunner handle the shopping while you save time and effort.
+        </p>
+
+        <div class="contact-details">
+          <p>📞 <b>09XX-XXX-XXXX</b></p>
+          <p>✉️ <b>shoprunner@email.com</b></p>
+          <p>📍 <b>Navotas City, Metro Manila</b></p>
+        </div>
+      </div>
+
+      <form class="order-form" onsubmit="submitOrder(event)">
+        <h3>Quick Order Inquiry</h3>
+
+        <input id="name" type="text" placeholder="Your name" required>
+
+        <input id="product" type="text" placeholder="What do you need?" required>
+
+        <input id="location" type="text" placeholder="Delivery location" required>
+
+        <button class="btn primary" type="submit">
+          Send Inquiry
+        </button>
+
+        <p id="formMessage" class="form-message"></p>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-brand">🛒 <b>ShopRunner</b></div>
+    <p>From Store to Your Door.</p>
+    <p class="copyright">© 2026 ShopRunner. Academic business project.</p>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
